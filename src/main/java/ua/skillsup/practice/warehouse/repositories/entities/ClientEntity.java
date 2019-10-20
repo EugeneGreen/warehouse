@@ -1,6 +1,9 @@
 package ua.skillsup.practice.warehouse.repositories.entities;
 
+import ua.skillsup.practice.warehouse.model.Contact;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,7 +12,7 @@ public class ClientEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-//    private List<String> contacts;
+    private ArrayList<Contact> contacts = new ArrayList<>();
     private String description;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
     private List<ProductEntity> products;
@@ -36,6 +39,14 @@ public class ClientEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ArrayList<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(ArrayList<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     public List<ProductEntity> getProducts() {

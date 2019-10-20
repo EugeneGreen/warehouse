@@ -37,6 +37,12 @@ public class ClientController {
         clientService.addClient(newClient);
     }
 
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateClient(@RequestBody Client existingClient) {
+        logger.info("Update client: {}", existingClient);
+        clientService.updateClient(existingClient);
+    }
+
     @PostMapping(path = "/{clientId}/product",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody Product product,
@@ -48,7 +54,7 @@ public class ClientController {
     @DeleteMapping(path = "/{clientId}",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createProduct(@PathVariable(name = "clientId") long clientId) {
-        logger.info("Delete client: {} {}", clientId);
+        logger.info("Delete client: {}", clientId);
         clientService.deleteClient(clientId);
     }
 

@@ -1,6 +1,7 @@
 package ua.skillsup.practice.warehouse.model;
 
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
@@ -8,17 +9,17 @@ public class Client {
 	@Size(min = 3, max = 50, message = "Size should be from 3 to 50 symbols")
 	private String name;
 	private String description;
+	private ArrayList<Contact> contacts = new ArrayList<>();
 	private List<Product> products;
-	private List<Contact> contacts;
 
 	public Client() {
 
 	}
 
-	public Client(Long id, @Size(min = 3, max = 50, message = "Size should be from 3 to 50 symbols") String name, String description, List<Product> products) {
-		this.id = id;
+	public Client(@Size(min = 3, max = 50, message = "Size should be from 3 to 50 symbols") String name, String description, ArrayList<Contact> contacts, List<Product> products) {
 		this.name = name;
 		this.description = description;
+		this.contacts = contacts;
 		this.products = products;
 	}
 
@@ -44,6 +45,14 @@ public class Client {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public ArrayList<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(ArrayList<Contact> contacts) {
+		this.contacts = contacts;
 	}
 
 	public List<Product> getProducts() {

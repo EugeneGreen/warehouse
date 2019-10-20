@@ -1,15 +1,17 @@
 package ua.skillsup.practice.warehouse.model;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
     private short contactTypeId;
-    private String contactValue;
+    private String value;
 
     public Contact () {
     }
 
-    public Contact(short contactTypeId, String contactValue) {
+    public Contact(short contactTypeId, String value) {
         this.contactTypeId = contactTypeId;
-        this.contactValue = contactValue;
+        this.value = value;
     }
 
     public short getContactTypeId() {
@@ -20,11 +22,11 @@ public class Contact {
         this.contactTypeId = contactTypeId;
     }
 
-    public String getContactValue() {
-        return contactValue;
+    public String getValue() {
+        return value;
     }
 
-    public void setContactValue(String contactValue) {
-        this.contactValue = contactValue;
+    public void setValue(String value) {
+        this.value = value;
     }
 }

@@ -46,6 +46,7 @@ public class ClientService {
         client.setId(entity.getId());
         client.setName(entity.getName());
         client.setDescription(entity.getDescription());
+        client.setContacts(entity.getContacts());
         client.setProducts(entity.getProducts().stream()
                 .map(ProductService::convertProductFromEntity)
                 .collect(Collectors.toList()));
@@ -57,6 +58,26 @@ public class ClientService {
         ClientEntity entity = new ClientEntity();
         entity.setName(client.getName());
         entity.setDescription(client.getDescription());
+        entity.setContacts(client.getContacts());
+        clientRepository.save(entity);
+    }
+
+    @Transactional
+    public void updateClient(Client client) {
+        Optional<ClientEntity> entityOptional = clientRepository.findById(client.getId());
+        if (!entityOptional.isPresent()) {
+            throw new NoSuchClientException("No client with ID " + client.getId());
+        }
+        ClientEntity entity = entityOptional.get();
+        if (client.getName() != null) {
+            entity.setName(client.getName());
+        }
+        if (client.getDescription() != null) {
+            entity.setDescription(client.getDescription());
+        }
+        if (client.getContacts() != null) {
+            entity.setContacts(client.getContacts());
+        }
         clientRepository.save(entity);
     }
 

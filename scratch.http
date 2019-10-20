@@ -1,0 +1,47 @@
+GET http://localhost:8080/clients
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/clients
+Content-Type: application/json
+
+{"name": "Eugene Zelenov", "description": "End Developer"}
+
+###
+
+PUT http://localhost:8080/clients
+Content-Type: application/json
+
+{"id": 33, "name": "John Deer", "description": "Front End Developer", "contacts": [{"contactTypeId": 1, "value": "johnytheyontrees@gmail.com"}, {"contactTypeId": 3, "value": "+38 (066) 000-00-09"}]}
+
+###
+
+DELETE http://localhost:8080/clients/1
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/clients/33/product
+Content-Type: application/json
+
+{
+  "id": 65,
+  "count": 5
+}
+
+###
+
+POST http://localhost:8080/clients/33/34/add
+Content-Type: application/json
+
+{"value": 3}
+
+###
+
+POST http://localhost:8080/clients/33/34/withdraw
+Content-Type: application/json
+
+{"value": 7}
+
+###
