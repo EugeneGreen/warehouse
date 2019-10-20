@@ -1,4 +1,4 @@
-package ua.skillsup.practice.restworkshop;
+package ua.skillsup.practice.warehouse;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

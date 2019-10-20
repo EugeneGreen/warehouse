@@ -1,8 +1,8 @@
-package ua.skillsup.practice.restworkshop.repositories;
+package ua.skillsup.practice.warehouse.repositories;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ua.skillsup.practice.restworkshop.repositories.entities.ProductEntity;
+import ua.skillsup.practice.warehouse.repositories.entities.ProductEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;

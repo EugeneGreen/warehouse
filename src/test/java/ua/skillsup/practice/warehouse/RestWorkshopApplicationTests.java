@@ -1,4 +1,4 @@
-package ua.skillsup.practice.restworkshop;
+package ua.skillsup.practice.warehouse;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

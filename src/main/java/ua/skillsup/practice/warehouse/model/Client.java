@@ -1,17 +1,15 @@
-package ua.skillsup.practice.restworkshop.model;
-
-import ua.skillsup.practice.restworkshop.repositories.entities.ProductEntity;
+package ua.skillsup.practice.warehouse.model;
 
 import javax.validation.constraints.Size;
 import java.util.List;
 
 public class Client {
     private Long id;
-
 	@Size(min = 3, max = 50, message = "Size should be from 3 to 50 symbols")
 	private String name;
 	private String description;
 	private List<Product> products;
+	private List<Contact> contacts;
 
 	public Client() {
 

@@ -1,4 +1,4 @@
-package ua.skillsup.practice.restworkshop.filters;
+package ua.skillsup.practice.warehouse.filters;
 
 import org.slf4j.LoggerFactory;
 

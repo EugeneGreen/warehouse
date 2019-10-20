@@ -83,7 +83,8 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-.idea/
+.idea/*
+.idea/httpRequests/*
 target/
 out/
 *.iml

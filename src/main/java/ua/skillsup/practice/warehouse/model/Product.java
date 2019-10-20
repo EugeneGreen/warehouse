@@ -1,4 +1,4 @@
-package ua.skillsup.practice.restworkshop.model;
+package ua.skillsup.practice.warehouse.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,16 +16,16 @@ public class Product {
 	@JsonFormat(pattern = "dd.MM.yyyy HH:mm")
 	@DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
 	private LocalDateTime dateUpdate;
+	private int count;
 
 	public Product() {
 	}
 
-	public Product(Long id, String title, String description, LocalDateTime dateCreate, LocalDateTime dateUpdate) {
+	public Product(Long id, String title, String description, int count) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.dateCreate = dateCreate;
-		this.dateUpdate = dateUpdate;
+		this.count = count;
 	}
 
 	public Long getId() {
@@ -66,6 +66,14 @@ public class Product {
 
 	public void setDateUpdate(LocalDateTime dateUpdate) {
 		this.dateUpdate = dateUpdate;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	@Override

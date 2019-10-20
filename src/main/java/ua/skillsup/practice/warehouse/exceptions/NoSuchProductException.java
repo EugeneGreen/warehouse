@@ -1,11 +1,11 @@
-package ua.skillsup.practice.restworkshop.exceptions;
+package ua.skillsup.practice.warehouse.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
-public class NoSuchClientException extends RuntimeException {
-    public NoSuchClientException(String message) {
+public class NoSuchProductException extends RuntimeException {
+    public NoSuchProductException(String message) {
         super(message);
     }
 }

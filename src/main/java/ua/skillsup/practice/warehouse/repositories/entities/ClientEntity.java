@@ -1,4 +1,4 @@
-package ua.skillsup.practice.restworkshop.repositories.entities;
+package ua.skillsup.practice.warehouse.repositories.entities;
 
 import javax.persistence.*;
 import java.util.List;
