@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
-    private Long id;
+	private Long id;
 	@Size(min = 3, max = 50, message = "Size should be from 3 to 50 symbols")
-	private String name;
-	private String description;
+	private String firstName;
+	private String lastName;
+	private String company;
 	private ArrayList<Contact> contacts = new ArrayList<>();
 	private List<Product> products;
 
@@ -16,9 +17,9 @@ public class Client {
 
 	}
 
-	public Client(@Size(min = 3, max = 50, message = "Size should be from 3 to 50 symbols") String name, String description, ArrayList<Contact> contacts, List<Product> products) {
-		this.name = name;
-		this.description = description;
+	public Client(@Size(min = 3, max = 50, message = "Size should be from 3 to 50 symbols") String firstName, String company, ArrayList<Contact> contacts, List<Product> products) {
+		this.firstName = firstName;
+		this.company = company;
 		this.contacts = contacts;
 		this.products = products;
 	}
@@ -31,20 +32,28 @@ public class Client {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 	public ArrayList<Contact> getContacts() {
@@ -67,8 +76,9 @@ public class Client {
 	public String toString() {
 		return "Client{" +
 				"id=" + id +
-				", name='" + name + '\'' +
-				", description='" + description + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", company='" + company + '\'' +
 				", products=" + products +
 				'}';
 	}

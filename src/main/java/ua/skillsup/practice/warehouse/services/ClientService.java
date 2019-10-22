@@ -1,14 +1,13 @@
 package ua.skillsup.practice.warehouse.services;
 
 import org.springframework.stereotype.Service;
+import ua.skillsup.practice.warehouse.exceptions.InvalidFormatClientException;
 import ua.skillsup.practice.warehouse.exceptions.NoSuchClientException;
 import ua.skillsup.practice.warehouse.exceptions.NotEmptyProductListException;
 import ua.skillsup.practice.warehouse.model.Client;
-import ua.skillsup.practice.warehouse.model.Product;
 import ua.skillsup.practice.warehouse.repositories.ProductRepository;
 import ua.skillsup.practice.warehouse.repositories.ClientRepository;
 import ua.skillsup.practice.warehouse.repositories.entities.ClientEntity;
-import ua.skillsup.practice.warehouse.repositories.entities.ProductEntity;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -44,8 +43,9 @@ public class ClientService {
     private static Client convertClientFromEntity(ClientEntity entity) {
         Client client = new Client();
         client.setId(entity.getId());
-        client.setName(entity.getName());
-        client.setDescription(entity.getDescription());
+        client.setFirstName(entity.getFirstName());
+        client.setLastName(entity.getLastName());
+        client.setCompany(entity.getCompany());
         client.setContacts(entity.getContacts());
         client.setProducts(entity.getProducts().stream()
                 .map(ProductService::convertProductFromEntity)
@@ -56,8 +56,12 @@ public class ClientService {
     @Transactional
     public void addClient(Client client) {
         ClientEntity entity = new ClientEntity();
-        entity.setName(client.getName());
-        entity.setDescription(client.getDescription());
+        if(client.getFirstName() == null || client.getLastName() == null || client.getContacts() == null || client.getContacts().size() == 0) {
+            throw new InvalidFormatClientException("All required fields must be filled");
+        }
+        entity.setFirstName(client.getFirstName());
+        entity.setLastName(client.getLastName());
+        entity.setCompany(client.getCompany());
         entity.setContacts(client.getContacts());
         clientRepository.save(entity);
     }
@@ -69,11 +73,14 @@ public class ClientService {
             throw new NoSuchClientException("No client with ID " + client.getId());
         }
         ClientEntity entity = entityOptional.get();
-        if (client.getName() != null) {
-            entity.setName(client.getName());
+        if (client.getFirstName() != null) {
+            entity.setFirstName(client.getFirstName());
         }
-        if (client.getDescription() != null) {
-            entity.setDescription(client.getDescription());
+        if (client.getLastName() != null) {
+            entity.setLastName(client.getLastName());
+        }
+        if (client.getCompany() != null) {
+            entity.setCompany(client.getCompany());
         }
         if (client.getContacts() != null) {
             entity.setContacts(client.getContacts());

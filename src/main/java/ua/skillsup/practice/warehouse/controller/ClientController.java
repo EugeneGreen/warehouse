@@ -61,8 +61,8 @@ public class ClientController {
     @PostMapping(path = "/{clientId}/{productId}/add",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addCountToProduct(@RequestBody ProductCount productCount,
-                              @PathVariable(name = "clientId") long clientId,
-                              @PathVariable(name = "productId") long productId) {
+                                  @PathVariable(name = "clientId") long clientId,
+                                  @PathVariable(name = "productId") long productId) {
         logger.info("Add productCount to product: {} {} {}", clientId, productId, productCount);
         productService.increaseCount(productId, productCount.getValue());
     }
@@ -70,8 +70,8 @@ public class ClientController {
     @PostMapping(path = "/{clientId}/{productId}/withdraw",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void withdrawProduct(@RequestBody ProductCount productCount,
-                                  @PathVariable(name = "clientId") long clientId,
-                                  @PathVariable(name = "productId") long productId) {
+                                @PathVariable(name = "clientId") long clientId,
+                                @PathVariable(name = "productId") long productId) {
         logger.info("decreease productCount from product: {} {} {}", clientId, productId, productCount);
         productService.decreaseCount(productId, productCount.getValue());
     }
