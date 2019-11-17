@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import ua.skillsup.practice.warehouse.model.ProductCount;
 import ua.skillsup.practice.warehouse.model.Product;
 import ua.skillsup.practice.warehouse.model.Client;
+import ua.skillsup.practice.warehouse.model.ProductCountList;
 import ua.skillsup.practice.warehouse.services.ClientService;
 import ua.skillsup.practice.warehouse.services.ProductService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
@@ -64,7 +66,7 @@ public class ClientController {
                                   @PathVariable(name = "clientId") long clientId,
                                   @PathVariable(name = "productId") long productId) {
         logger.info("Add productCount to product: {} {} {}", clientId, productId, productCount);
-        productService.increaseCount(productId, productCount.getValue());
+        productService.increaseCount(productId, productCount.getCount());
     }
 
     @PostMapping(path = "/{clientId}/{productId}/withdraw",
@@ -73,6 +75,16 @@ public class ClientController {
                                 @PathVariable(name = "clientId") long clientId,
                                 @PathVariable(name = "productId") long productId) {
         logger.info("decreease productCount from product: {} {} {}", clientId, productId, productCount);
-        productService.decreaseCount(productId, productCount.getValue());
+        productService.decreaseCount(productId, productCount.getCount());
+    }
+
+    @PostMapping(path = "/{clientId}/withdraw",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void withdrawProducts(@RequestBody ProductCountList products,
+                                @PathVariable(name = "clientId") long clientId) {
+        logger.info("group withdraw products: {}", clientId);
+        for (int i = 0; i < products.getProducts().size(); i++) {
+            productService.decreaseCount(products.getProducts().get(i).getId(), products.getProducts().get(i).getCount());
+        }
     }
 }

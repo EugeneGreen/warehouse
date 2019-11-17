@@ -4,20 +4,14 @@ import org.springframework.stereotype.Service;
 import ua.skillsup.practice.warehouse.exceptions.NoSuchClientException;
 import ua.skillsup.practice.warehouse.exceptions.NoSuchProductException;
 import ua.skillsup.practice.warehouse.exceptions.NotEnoughProductException;
-import ua.skillsup.practice.warehouse.model.Client;
 import ua.skillsup.practice.warehouse.model.Product;
 import ua.skillsup.practice.warehouse.repositories.ClientRepository;
 import ua.skillsup.practice.warehouse.repositories.ProductRepository;
 import ua.skillsup.practice.warehouse.repositories.entities.ClientEntity;
 import ua.skillsup.practice.warehouse.repositories.entities.ProductEntity;
 
-import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -34,6 +28,7 @@ public class ProductService {
         product.setId(entity.getId());
         product.setTitle(entity.getTitle());
         product.setDescription(entity.getDescription());
+        product.setCategories(entity.getCategories());
         product.setDateCreate(entity.getDateCreate());
         product.setDateUpdate(entity.getDateUpdate());
         product.setCount(entity.getCount());
@@ -77,6 +72,7 @@ public class ProductService {
         entity.setTitle(product.getTitle());
         entity.setDescription(product.getDescription());
         entity.setCount(entity.getCount() + product.getCount());
+        entity.setCategories(product.getCategories());
         entity.setDateCreate(LocalDateTime.now());
         entity.setDateUpdate(LocalDateTime.now());
         entity.setClient(client.get());

@@ -1,7 +1,10 @@
 package ua.skillsup.practice.warehouse.repositories.entities;
 
+import ua.skillsup.practice.warehouse.model.Category;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Entity
 public class ProductEntity {
@@ -13,6 +16,7 @@ public class ProductEntity {
     @JoinColumn(name = "client_id")
     private ClientEntity client;
     private String description;
+    private ArrayList<Category> categories = new ArrayList<>();
     private int count;
     private LocalDateTime dateCreate;
     private LocalDateTime dateUpdate;
@@ -47,6 +51,14 @@ public class ProductEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ArrayList<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(ArrayList<Category> categories) {
+        this.categories = categories;
     }
 
     public int getCount() {

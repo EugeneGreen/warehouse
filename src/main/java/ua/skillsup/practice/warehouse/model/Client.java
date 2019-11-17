@@ -79,6 +79,7 @@ public class Client {
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", company='" + company + '\'' +
+                ", contacts=" + contacts +
 				", products=" + products +
 				'}';
 	}

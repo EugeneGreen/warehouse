@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Product {
 
@@ -16,15 +17,17 @@ public class Product {
 	@JsonFormat(pattern = "dd.MM.yyyy HH:mm")
 	@DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
 	private LocalDateTime dateUpdate;
+	private ArrayList<Category> categories = new ArrayList<>();
 	private int count;
 
 	public Product() {
 	}
 
-	public Product(Long id, String title, String description, int count) {
+	public Product(Long id, String title, String description, ArrayList<Category> categories, int count) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
+		this.categories = categories;
 		this.count = count;
 	}
 
@@ -68,6 +71,14 @@ public class Product {
 		this.dateUpdate = dateUpdate;
 	}
 
+	public ArrayList<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(ArrayList<Category> categories) {
+		this.categories = categories;
+	}
+
 	public int getCount() {
 		return count;
 	}
@@ -82,6 +93,7 @@ public class Product {
 				"id=" + id +
 				", title='" + title + '\'' +
 				", description='" + description + '\'' +
+                ", categories=" + categories +
 				", dateCreate=" + dateCreate +
 				", dateUpdate=" + dateUpdate +
 				'}';
