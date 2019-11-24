@@ -45,7 +45,7 @@ public class ClientController {
         clientService.updateClient(existingClient);
     }
 
-    @PostMapping(path = "/{clientId}/product",
+    @PostMapping(path = "/{clientId}/addProducts",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody Product product,
                               @PathVariable(name = "clientId") long clientId) {
@@ -55,7 +55,7 @@ public class ClientController {
 
     @DeleteMapping(path = "/{clientId}",
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createProduct(@PathVariable(name = "clientId") long clientId) {
+    public void deleteClient(@PathVariable(name = "clientId") long clientId) {
         logger.info("Delete client: {}", clientId);
         clientService.deleteClient(clientId);
     }
@@ -78,7 +78,7 @@ public class ClientController {
         productService.decreaseCount(productId, productCount.getCount());
     }
 
-    @PostMapping(path = "/{clientId}/withdraw",
+    @PostMapping(path = "/{clientId}/products/withdraw",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void withdrawProducts(@RequestBody ProductCountList products,
                                 @PathVariable(name = "clientId") long clientId) {

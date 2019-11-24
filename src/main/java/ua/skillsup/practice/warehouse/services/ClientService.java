@@ -56,7 +56,7 @@ public class ClientService {
     @Transactional
     public void addClient(Client client) {
         ClientEntity entity = new ClientEntity();
-        if(client.getFirstName() == null || client.getLastName() == null || client.getContacts() == null || client.getContacts().size() == 0) {
+        if(!client.isCorrect()) {
             throw new InvalidFormatClientException("All required fields must be filled");
         }
         entity.setFirstName(client.getFirstName());

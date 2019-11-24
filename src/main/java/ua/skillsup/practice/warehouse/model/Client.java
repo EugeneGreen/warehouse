@@ -72,6 +72,13 @@ public class Client {
 		this.products = products;
 	}
 
+	public boolean isCorrect() {
+		if(firstName == null || lastName == null || contacts == null || contacts.size() == 0) {
+			return false;
+		}
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		return "Client{" +
